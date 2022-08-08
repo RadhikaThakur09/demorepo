@@ -1,0 +1,14 @@
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --target-dir /user/radhikathakurtigeranalyti/05April2022/sqoop/salgt50000_FromQuery --query "select * from emp where esal >= 50000 and \$CONDITIONS" -m 1
+
+sqoop import --connect * --username * --password * --table * --target-dir * --where "ecity='Bangalore'" -m 1
+
+mysql -u radhikathakurtigeranalyti -pradhikathakurtigeranalytimkqhm -h sqoopdb.slbdh.cloudlabs.com
+
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp007 --target-dir /user/radhikathakurtigeranalyti/sqoopdemo/emp007WithoutPK --incremental append --check-column eid --last-value 4 --columns "eid,ename,esal" -m 1
+
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table employee5apr2022 --target-dir /user/radhikathakurtigeranalyti/05April2022/sqoop/output4 -m 1 --fields-terminated-by '\t'
+
+sqoop export --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp007 --export-dir /user/prashantnair2050gmail/sqoopdemo/emp007WithoutPK --input-fields-terminated-by ',' --columns "eid,ename,esal"
+
+truncate <tablename> 
+

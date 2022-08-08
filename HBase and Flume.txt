@@ -1,0 +1,26 @@
+HBase:
+It follows CAP theorem, Consistency, Availability, Partition tolerance
+
+Note: Don't use semicolumn in the end of command like mysql.
+hbase shell
+
+to create databse along with table:
+create 'database_name', 'table_name'
+create 'radhikathakur_hbase', 'emp'
+
+scan 'database_name'
+scan 'radhikathakur_hbase'
+
+to insert data in table:
+put 'database_name',1,'table_name:column_name','Value'
+put 'radhikathakur_hbase',1,'emp:ename','Radhika'
+
+get 'database_name',1
+get 'radhikathakur_hbase',1
+
+DB to HBase:
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp --hbase-bulkload --hbase-table radhikathakurtigeranalyti --column-family emp -m 1
+
+
+
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp --columns "eid,ename,esal,ecity" --hbase-table radhikathakurtigeranalyti --column-family ename --hbase-row-key "eid" -m 1

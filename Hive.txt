@@ -1,0 +1,63 @@
+First step:
+install .hiverc file
+vi .hiverc
+then press i
+then paste commands given by Prashant :
+set hive.cli.print.current.db=true;
+set hive.cli.print.header=true
+press :wq to save the file
+cat .hiverc to check if everything is fine
+
+start work on hive:
+hive
+
+create database <username>
+
+use <username>
+
+create internal table in database:
+create table employee
+(empid int,
+ename string,
+esal int)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n';
+
+create directory in Hue and upload data in that directory:
+
+Load data in table(hive):
+LOAD DATA INPATH '/user/radhikathakurtigeranalyti/hive_rev/
+empData.txt' INTO TABLE employee;
+
+after loading a data into hive database it gone from hive directory which is present on Hue.
+That means if you create internal table(managed table) Hive owns the data so it not visible or it is gone from HDFS(Hue), it is viewd/store in Hive warehouse. If you create external table(unmanaged table) HDFS owns tha data so it visible on HDFS(Hue)
+
+select * from employee;
+
+select count(*) from employee;
+
+select * from employee where empid > 3;
+
+Create External table in database:
+create external table emp
+(eid int,
+ename string,
+esal int)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+LOCATION '/user/radhikathakurtigeranalyti/hive_rev1';
+
+Note: Load data command is only for internal table.
+
+Hive Sqoop Interation
+======================
+
+Hive Sqoop Import Command:
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp007 --hive-import --hive-database radhika_hive --hive-table empfromdb -m 1
+
+
+sqoop import --connect jdbc:mysql://sqoopdb.slbdh.cloudlabs.com/radhikathakurtigeranalyti --username radhikathakurtigeranalyti --password radhikathakurtigeranalytimkqhm --table emp007 --hive-import --hive-database radhika_hive --hive-table empexternal -m 1 --fields-terminated-by ','
+
+select JobTitle from salaries where EmployeeName= ‘JOSEPH DRISCOLL’;
